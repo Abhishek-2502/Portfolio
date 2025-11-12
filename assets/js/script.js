@@ -145,3 +145,41 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+// -----------------------------
+// Experience expand/collapse
+// -----------------------------
+
+(function () {
+  const expandableItems = document.querySelectorAll('.timeline-item.expandable');
+
+  if (!expandableItems.length) return;
+
+  expandableItems.forEach(item => {
+    // create header if not present (safe fallback)
+    let header = item.querySelector('.timeline-header');
+    if (!header) {
+      // assume first child is header-like: wrap it (minimal fallback)
+      const firstChild = item.firstElementChild;
+      header = document.createElement('div');
+      header.className = 'timeline-header';
+      if (firstChild) header.appendChild(firstChild);
+      item.insertBefore(header, item.firstElementChild);
+    }
+
+    // ensure a toggle icon exists
+    let icon = header.querySelector('.toggle-icon');
+    if (!icon) {
+      icon = document.createElement('ion-icon');
+      icon.className = 'toggle-icon';
+      icon.setAttribute('name', 'chevron-down-outline');
+      header.appendChild(icon);
+    }
+
+    // click on header toggles the item
+    header.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+
+  });
+})();
