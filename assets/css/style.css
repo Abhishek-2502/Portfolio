@@ -1732,28 +1732,29 @@ textarea.form-input::-webkit-resizer {
    * #RESUME
    */
 
-/* Resume download icon styling */
-.resume-download {
-  color: #ffd700; /* elegant gold tone */
-  margin-top: 50px;
-  margin-left: 10px;
-  font-size: 22px;
-  vertical-align: middle;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
+  /* Resume download icon styling */
+  .resume-download {
+    color: #ffd700;
+    /* elegant gold tone */
+    margin-top: 50px;
+    margin-left: 10px;
+    font-size: 22px;
+    vertical-align: middle;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
 
-.resume-download:hover {
-  color: #ffffff;
-  transform: scale(1.2);
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-}
+  .resume-download:hover {
+    color: #ffffff;
+    transform: scale(1.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  }
 
-/* Optional: alignment for header version */
-.resume-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  /* Optional: alignment for header version */
+  .resume-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
 
   .timeline-list {
@@ -1947,6 +1948,39 @@ textarea.form-input::-webkit-resizer {
     width: max-content;
     margin-left: auto;
   }
+
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #222;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .toast.success {
+    background: #16a34a;
+    /* green */
+  }
+
+  .toast.error {
+    background: #dc2626;
+    /* red */
+  }
+
 
 }
 

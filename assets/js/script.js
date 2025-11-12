@@ -124,6 +124,60 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+// -----------------------------
+// Formspree Email Submission
+// -----------------------------
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // stop Formspree default redirect
+
+  formBtn.disabled = true;
+  formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon> Sending...';
+
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch("https://formspree.io/f/xnnlqkgg", {
+      method: "POST",
+      body: data,
+      headers: {
+        "Accept": "application/json" // ✅ this ensures JSON response (no redirect screen)
+      }
+    });
+
+    if (response.ok) {
+      showToast("✅ Message sent successfully!", "success");
+      form.reset();
+    } else {
+      showToast("❌ Error sending message. Try again later.", "error");
+    }
+  } catch (error) {
+    showToast("⚠️ Network issue, please try again.", "error");
+  }
+
+  formBtn.disabled = false;
+  formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon> <span>Send Message</span>';
+});
+
+// -----------------------------
+// Toast Notification
+// -----------------------------
+function showToast(message, type) {
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
