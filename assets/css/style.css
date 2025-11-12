@@ -839,40 +839,40 @@ main {
   margin-bottom: 30px;
 }
 
-  .resume-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+.resume-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-  /* Resume download button */
-  .resume-download {
-    text-decoration: none;
-    background: var(--orange-yellow-crayola);
-    color: var(--smoky-black);
-    margin-top: 50px;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-2);
-    transition: var(--transition-1);
-    border: none;
-  }
+/* Resume download button */
+.resume-download {
+  text-decoration: none;
+  background: var(--orange-yellow-crayola);
+  color: var(--smoky-black);
+  margin-top: 50px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-2);
+  transition: var(--transition-1);
+  border: none;
+}
 
-  .resume-download ion-icon {
-    color: var(--smoky-black);
-    font-size: 20px;
-  }
+.resume-download ion-icon {
+  color: var(--smoky-black);
+  font-size: 20px;
+}
 
-  .resume-download:hover {
-    background: var(--vegas-gold);
-    transform: scale(1.1);
-  }
+.resume-download:hover {
+  background: var(--vegas-gold);
+  transform: scale(1.1);
+}
 
 
 /**
@@ -959,10 +959,11 @@ main {
 /* Experience collapse styling */
 .timeline-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 4px;
+  text-align: right;
 }
 
 /* Force vertical stacking below 600px */
@@ -1890,6 +1891,38 @@ textarea.form-input::-webkit-resizer {
 
   .form-btn ion-icon {
     font-size: 18px;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #222;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .toast.success {
+    background: #16a34a;
+    /* green */
+  }
+
+  .toast.error {
+    background: #dc2626;
+    /* red */
   }
 
 }
