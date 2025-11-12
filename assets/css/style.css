@@ -532,7 +532,7 @@ main {
   color: var(--light-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
-  line-height: 1.8;
+  line-height: 1.6;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -839,6 +839,41 @@ main {
   margin-bottom: 30px;
 }
 
+  .resume-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Resume download button */
+  .resume-download {
+    text-decoration: none;
+    background: var(--orange-yellow-crayola);
+    color: var(--smoky-black);
+    margin-top: 50px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-2);
+    transition: var(--transition-1);
+    border: none;
+  }
+
+  .resume-download ion-icon {
+    color: var(--smoky-black);
+    font-size: 20px;
+  }
+
+  .resume-download:hover {
+    background: var(--vegas-gold);
+    transform: scale(1.1);
+  }
+
 
 /**
  * education and experience 
@@ -869,10 +904,19 @@ main {
 }
 
 .timeline-item-title {
-  font-size: var(--fs-6);
-  line-height: 1.3;
-  margin-bottom: 7px;
+  flex: 1 1 100%;
+  text-align: left;
+  word-break: break-word;
+  margin-bottom: 3px;
 }
+
+.timeline-duration {
+  flex: 1 1 100%;
+  text-align: left;
+  color: var(--vegas-gold);
+  font-weight: var(--fw-400);
+}
+
 
 .timeline-list span {
   color: var(--vegas-gold);
@@ -916,16 +960,22 @@ main {
 .timeline-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.timeline-header .timeline-duration {
-  font-size: 0.9rem;
-  color: var(--vegas-gold);
-  flex: 1;
-  text-align: right;
+/* Force vertical stacking below 600px */
+@media (min-width: 768px) {
+  .timeline-item-title {
+    flex: 1;
+    text-align: left;
+  }
+
+  .timeline-duration {
+    flex: 0 0 auto;
+    text-align: right;
+  }
 }
 
 .timeline-content {
@@ -1732,30 +1782,45 @@ textarea.form-input::-webkit-resizer {
    * #RESUME
    */
 
-  /* Resume download icon styling */
-  .resume-download {
-    color: #ffd700;
-    /* elegant gold tone */
-    margin-top: 50px;
-    margin-left: 10px;
-    font-size: 22px;
-    vertical-align: middle;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
+  /*-----------------------------------*\
+  #RESUME DOWNLOAD BUTTON (GLOBAL)
+\*-----------------------------------*/
 
-  .resume-download:hover {
-    color: #ffffff;
-    transform: scale(1.2);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-  }
-
-  /* Optional: alignment for header version */
+  /* Resume header layout */
   .resume-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
+  /* Resume download button */
+  .resume-download {
+    text-decoration: none;
+    background: var(--orange-yellow-crayola);
+    color: var(--smoky-black);
+    margin-top: 50px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-2);
+    transition: var(--transition-1);
+    border: none;
+  }
+
+  .resume-download ion-icon {
+    color: var(--smoky-black);
+    font-size: 20px;
+  }
+
+  .resume-download:hover {
+    background: var(--vegas-gold);
+    transform: scale(1.1);
+  }
 
   .timeline-list {
     margin-left: 65px;
