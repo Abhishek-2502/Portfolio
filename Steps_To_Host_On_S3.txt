@@ -1,0 +1,70 @@
+-----AWS-----
+-----S3-----
+1. Make a S3 Bucket and unblock Public Access.
+2. In S3 Bucket, turn on Static Website Hosting under Properties tab and put starting file name as index.html.
+3. Under Permission tab, add bucket Policy:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::portfolio-git-actions/*"
+        }
+    ]
+}
+
+NOTE:
+Change portfolio-git-actions in Resource as per your bucket name.
+
+-----IAM-----
+4. Make a IAM user and make a access key and copy access key and secret boths for future use.
+5. Give following Permissions Policy to IAM user:
+    AdministratorAccess
+    AWSCodeCommitPowerUser
+    IAMUserChangePassword
+
+
+-----GITHUB-----
+1. In github,make a repo, clone it and upload your website.
+2. Goto Settings of repo and than Security-> Secrets and Variables-> Actions, add following Variables:
+    AWS_ACCESS_KEY_ID : YOUR_IAM_USER_ACCESS_KEY
+    AWS_SECRET_ACCESS_KEY : YOUR_IAM_USER_SECRET_KEY
+
+3. Goto Actions in repo and click on set up a workflow yourself.
+4. Add following code in main.yml:
+
+name: Portfolio Deployment
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+
+    - name: Deploy static site to S3 bucket
+      run: aws s3 sync . s3://portfolio-git-actions --delete
+
+NOTE:
+Change portfolio-git-actions according to your s3 name.
+Change ap-south-1 according to your region. 
+
+5. Pull the code, then push the code.
+
+
+Final Step: Goto S3 Bucket and under Static Website Hosting, there is a link for your website.
